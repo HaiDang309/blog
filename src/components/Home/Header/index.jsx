@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-import { Space } from "antd";
+import { Space, Row, Col, Typography } from "antd";
 import Icon from "@ant-design/icons";
 import {
     CoffeeIcon,
@@ -11,46 +11,58 @@ import {
 } from "../../../svg";
 
 const Header = memo((props) => {
+    const { Text } = Typography;
     return (
-        <div style={{ textAlign: "center" }}>
-            <Space size={32} style={{ marginTop: "96px" }}>
-                <Icon component={CoffeeIcon} />
-                <Icon component={BookIcon} />
-                <div
-                    style={{
-                        width: "50vw",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-end",
-                        fontFamily: "Dancing Script, cursive",
-                    }}
-                >
-                    <div>
-                        <Icon component={QuoteIcon} />
-                        <span
-                            style={{
-                                fontSize: "32px",
-                                fontWeight: "700",
-                                marginLeft: "8px",
-                            }}
-                        >
-                            Tôi chỉ biết mỗi một điều duy nhất
-                            là tôi không biết gì cả.
-                        </span>
-                    </div>
-                    <span
+        <>
+            <Row>
+                <Col xs={{ span: 0 }} lg={{ span: 3 }}>
+                    <Icon component={CoffeeIcon} />
+                </Col>
+                <Col xs={{ span: 0 }} lg={{ span: 3 }}>
+                    <Icon component={BookIcon} />
+                </Col>
+                <Col xs={{ span: 24 }} lg={{ span: 12 }}>
+                    <div
                         style={{
-                            fontSize: "20px",
-                            paddingRight: "32px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-end",
+                            fontFamily:
+                                "Dancing Script, cursive",
+                            margin: "8px",
                         }}
                     >
-                        - Sokrates
-                    </span>
-                </div>
-                <Icon component={CodeIcon} />
-                <Icon component={ChessIcon} />
-            </Space>
-        </div>
+                        <div>
+                            <Icon component={QuoteIcon} />
+                            <span
+                                style={{
+                                    fontSize: "32px",
+                                    fontWeight: "700",
+                                    marginLeft: "8px",
+                                }}
+                            >
+                                Tôi chỉ biết mỗi một điều duy
+                                nhất là tôi không biết gì cả.
+                            </span>
+                        </div>
+                        <span
+                            style={{
+                                fontSize: "20px",
+                                paddingRight: "32px",
+                            }}
+                        >
+                            - Sokrates
+                        </span>
+                    </div>
+                </Col>
+                <Col xs={{ span: 0 }} lg={{ span: 3 }}>
+                    <Icon component={CodeIcon} />
+                </Col>
+                <Col xs={{ span: 0 }} lg={{ span: 3 }}>
+                    <Icon component={ChessIcon} />
+                </Col>
+            </Row>
+        </>
     );
 });
 

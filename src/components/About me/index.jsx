@@ -1,28 +1,33 @@
 import React, { memo, useState, useEffect } from "react";
 
 import Navbar from "../Navbar";
-import Footer from '../Footer'
+import Footer from "../Footer";
 
-import { Space, Button, Typography, Image } from "antd";
-import { FacebookOutlined, LinkedinOutlined, GithubOutlined } from '@ant-design/icons'
+import { Space, Button, Typography, Image, Layout } from "antd";
+import {
+    FacebookOutlined,
+    LinkedinOutlined,
+    GithubOutlined,
+} from "@ant-design/icons";
 
 import { useParams } from "react-router-dom";
 
 import avatar from "./avatar.jpg";
+import { Content } from "antd/lib/layout/layout";
 
 const AboutMe = memo((props) => {
     const { id } = useParams();
     const { Title, Text } = Typography;
+    const { Content } = Layout;
     return (
-        <div>
+        <>
             <Navbar />
-            <div style={{ textAlign: "center" }}>
-                <Space
-                    wrap
-                    align="start"
+            <Layout>
+                <Content
                     style={{
-                        width: "720px",
-                        marginTop: "96px",
+                        overflowY: "auto",
+                        textAlign: "center",
+                        padding: "0 24px",
                     }}
                 >
                     <Title>About me</Title>
@@ -97,12 +102,18 @@ const AboutMe = memo((props) => {
                                 bạn😊.
                             </div>
                         </Space>
-                        <Space style={{ marginBottom: "64px" }}>
+                        <Space
+                            style={{
+                                marginBottom: "64px",
+                            }}
+                        >
                             <Button
                                 href="https://www.facebook.com/haidang309"
                                 target="_blank"
                                 type="link"
-                                style={{ fontSize: "1.5em" }}
+                                style={{
+                                    fontSize: "1.5em",
+                                }}
                             >
                                 <FacebookOutlined />
                             </Button>
@@ -110,7 +121,9 @@ const AboutMe = memo((props) => {
                                 href="https://www.linkedin.com/in/hai-dang-nguyen-8599201a7/"
                                 target="_blank"
                                 type="link"
-                                style={{ fontSize: "1.5em" }}
+                                style={{
+                                    fontSize: "1.5em",
+                                }}
                             >
                                 <LinkedinOutlined />
                             </Button>
@@ -118,16 +131,17 @@ const AboutMe = memo((props) => {
                                 href="https://github.com/HaiDang309"
                                 target="_blank"
                                 type="text"
-                                style={{ fontSize: "1.5em" }}
+                                style={{
+                                    fontSize: "1.5em",
+                                }}
                             >
                                 <GithubOutlined />
                             </Button>
                         </Space>
                     </Space>
-                </Space>
-            </div>
-            <Footer />
-        </div>
+                </Content>
+            </Layout>
+        </>
     );
 });
 

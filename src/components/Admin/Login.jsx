@@ -40,8 +40,6 @@ const Login = memo((props) => {
     return (
         <div
             style={{
-                width: "100vw",
-                height: "100vh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -50,7 +48,6 @@ const Login = memo((props) => {
             <Card title="Administrator">
                 <Form
                     autoComplete="off"
-                    //   onFinish={onFinish}
                 >
                     <Form.Item name="name">
                         <Input

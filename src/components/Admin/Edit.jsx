@@ -7,6 +7,8 @@ import {
     Image,
     Button,
     message,
+    Row,
+    Col
 } from "antd";
 
 import { useDispatch } from "react-redux";
@@ -32,7 +34,6 @@ const Edit = memo((props) => {
     const [inputDescription, setInputDescription] = useState(
         ""
     );
-    const [inputQuery, setInputQuery] = useState("");
     const [inputKeywords, setInputKeywords] = useState("");
     const [pids, setPids] = useState([]);
     // const [keywordContainer, setKeywordContainer] = useState([]);
@@ -47,9 +48,6 @@ const Edit = memo((props) => {
     };
     const handleChangeFeaturedImage = (e) => {
         setInputFeaturedImage(e.target.value);
-    };
-    const handleChangeQuery = (e) => {
-        setInputQuery(e.target.value);
     };
     const handleChangeKeywords = (e) => {
         setInputKeywords(e.target.value);
@@ -103,7 +101,6 @@ const Edit = memo((props) => {
             !inputContent ||
             !inputDescription ||
             !inputKeywords ||
-            !inputQuery ||
             !inputDate
         ) {
             message.error("Missing information!");
@@ -118,7 +115,6 @@ const Edit = memo((props) => {
                 title: inputTitle,
                 date: inputDate,
                 description: inputDescription,
-                query: inputQuery,
                 tags: tagContainer,
                 content: inputContent,
                 keywords: inputKeywords.split(","),
@@ -131,7 +127,6 @@ const Edit = memo((props) => {
         setInputDescription("");
         setInputFeaturedImage("");
         setInputKeywords("");
-        setInputQuery("");
         setInputTag("");
         setInputTitle("");
     };
@@ -185,69 +180,96 @@ const Edit = memo((props) => {
                         placeholder="Description"
                     />
                     <Input
-                        value={inputQuery}
-                        onChange={handleChangeQuery}
-                        placeholder="Query"
-                    />
-                    <Input
                         value={inputKeywords}
                         onChange={handleChangeKeywords}
                         placeholder="Keywords: separate by comma or .csv file"
                     />
-                    <Input value={inputDate} onChange={handleChangeDate} placeholder="Date" />
+                    <Input
+                        value={inputDate}
+                        onChange={handleChangeDate}
+                        placeholder="Date"
+                    />
                 </Space>
-                <Space
+                <Row
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
                     }}
                 >
-                    <Space>
-                        <Input
-                            onChange={handleChangeFeaturedImage}
-                            placeholder="Image's url"
-                        />
-                        <Image
-                            style={{ width: "256px" }}
-                            src={inputFeaturedImage}
-                            alt=""
-                        />
-                    </Space>
+                    <Col lg={{ span: 8 }} xs={{ span: 24 }}>
+                        <Space>
+                            <Input
+                                onChange={
+                                    handleChangeFeaturedImage
+                                }
+                                placeholder="Image's url"
+                            />
+                            <Image
+                                style={{ width: "256px" }}
+                                src={inputFeaturedImage}
+                                alt=""
+                            />
+                        </Space>
+                    </Col>
                     {/* Logout - preview - publish button */}
-                    <Space style={{ marginBottom: "24px" }}>
-                        <Button
-                            onClick={handlePublish}
-                            type="primary"
-                        >
-                            Publish
-                        </Button>
-                        <Button
-                            onClick={handlePreview}
-                            type="dashed"
-                            href="/admin/preview"
-                            target="_blank"
-                        >
-                            Preview
-                        </Button>
+                    <Col lg={{ span: 16 }} xs={{ span: 24 }}>
+                        <Row style={{ marginBottom: "24px" }}>
+                            <Col
+                                lg={{ span: 4 }}
+                                xs={{ span: 24 }}
+                            >
+                                <Button
+                                    onClick={handlePublish}
+                                    type="primary"
+                                >
+                                    Publish
+                                </Button>
+                            </Col>
+                            <Col
+                                lg={{ span: 4 }}
+                                xs={{ span: 24 }}
+                            >
+                                <Button
+                                    onClick={handlePreview}
+                                    type="dashed"
+                                    href="/admin/preview"
+                                    target="_blank"
+                                >
+                                    Preview
+                                </Button>
+                            </Col>
 
-                        <Button
-                            href="/"
-                            onClick={handleReturnHome}
-                            type="link"
-                        >
-                            Home
-                        </Button>
+                            <Col
+                                lg={{ span: 4 }}
+                                xs={{ span: 24 }}
+                            >
+                                <Button
+                                    href="/"
+                                    onClick={handleReturnHome}
+                                    type="link"
+                                >
+                                    Home
+                                </Button>
+                            </Col>
 
-                        <Button onClick={handleLogOut} danger>
-                            Log out
-                        </Button>
-                    </Space>
-                </Space>
+                            <Col
+                                lg={{ span: 4 }}
+                                xs={{ span: 24 }}
+                            >
+                                <Button
+                                    onClick={handleLogOut}
+                                    danger
+                                >
+                                    Log out
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
                 <TextArea
                     onChange={handleChangeContent}
-                    value={inputContent}
+                    data={inputContent}
                     id="textarea-content"
-                    autoSize={{ minRows: 15 }}
                     showCount
                     placeholder="Markdown syntax is supported."
                 />

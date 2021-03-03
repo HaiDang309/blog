@@ -7,7 +7,6 @@ import { CopyrightIcon } from '../../svg';
 const Footer = memo(props => {
     const { Footer } = Layout;
     return (
-        <Layout>
             <Footer style={{ backgroundColor: "#20232a" }}>
                 <div style={{ textAlign: "center", color: "white" }}>
                     <Space>
@@ -17,7 +16,6 @@ const Footer = memo(props => {
                     </Space>
                 </div>
             </Footer>
-        </Layout>
     );
 })
 

@@ -3,11 +3,11 @@ import React, { memo, Fragment, useEffect } from "react";
 import Header from "./Header";
 import Article from "./Article/index";
 import Navbar from "../Navbar";
-import Footer from '../Footer';
 
-import { notification } from 'antd';
+import { notification, Layout } from 'antd';
 
 const Home = memo((props) => {
+    const { Content } = Layout;
     useEffect(() => {
         {
             notification.open({
@@ -20,11 +20,13 @@ const Home = memo((props) => {
     }, [])
     return (
         <Fragment>
-        
             <Navbar />
-            <Header />
-            <Article />
-            <Footer />
+            <Layout>
+                <Content style={{ margin: "24px 16px 0", overflowY: "auto" }}>
+                    <Header />
+                    <Article />
+                </Content>
+            </Layout>
         </Fragment>
     );
 });
