@@ -1,7 +1,6 @@
 import React, { memo, useState, useEffect } from "react";
 
 import Navbar from "../Navbar";
-import Footer from "../Footer";
 
 import { Space, Button, Typography, Image, Layout } from "antd";
 import {

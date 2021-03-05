@@ -1,42 +1,46 @@
 import firebase from "../Services/firebase";
 
 export const getPost = async () => {
-    const db = firebase.firestore();
-    const postsRef = db.collection("posts");
-    const snapshot = await postsRef.get();
-    let data = [];
-    snapshot.forEach((doc) => {
-        data = data.concat(doc.data());
+    const db = firebase.database();
+    const rootRef = db.ref();
+    const data = [];
+    const postRef = await rootRef.child("posts");
+    await postRef.get().then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            data.push(childSnapshot.val());
+        });
     });
     return data;
 };
 
 export const getPostById = async (pid) => {
-    const db = firebase.firestore();
-    let data = [];
-    const postsRef = db.collection("posts");
-    const snapshot = await postsRef
-        .where("pid", "==", pid)
-        .get();
-    snapshot.forEach((doc) => {
-        data = data.concat(doc.data());
-    });
+    const db = firebase.database();
+    const rootRef = db.ref();
+    const data = {};
+    const postRef = await rootRef.child("posts");
+    await postRef
+        .orderByChild("pid")
+        .equalTo(pid)
+        .once("child_added", (snapshot) => {
+            Object.assign(data, snapshot.val());
+        });
     return data;
 };
 
-
 export const getPostByTag = async (tag) => {
-    const db = firebase.firestore();
-    let data = [];
-    const postsRef = db.collection("posts");
-    const snapshot = await postsRef
-        .where("tags", "array-contains", tag)
-        .get();
-    snapshot.forEach((doc) => {
-        data = data.concat(doc.data());
+    const db = firebase.database();
+    const rootRef = db.ref();
+    const data = [];
+    const postRef = await rootRef.child("posts");
+    await postRef.get().then((snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        if(childSnapshot.val().tags.includes(tag)) {
+            data.push(childSnapshot.val())
+        }
+      });
     });
     return data;
-}
+};
 // db.collection("posts")
 //   .get()
 //   .then((querySnapshot) => {

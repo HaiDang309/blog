@@ -1,6 +1,6 @@
 import firebase from "firebase";
 import "firebase/auth";
-import "firebase/firestore";
+import "firebase/database";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -8,6 +8,8 @@ dotenv.config();
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "codecuatui-309.firebaseapp.com",
+    databaseURL:
+        "https://codecuatui-309-default-rtdb.firebaseio.com/",
     projectId: "codecuatui-309",
     storageBucket: "codecuatui-309.appspot.com",
     messagingSenderId: "922072348761",

@@ -5,9 +5,7 @@ import Posts from "./Posts";
 import { Row, Col } from "antd";
 
 const Article = memo((props) => {
-    return (
-            <Posts />
-    );
+    return <Posts />;
 });
 
 export default Article;

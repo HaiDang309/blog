@@ -8,7 +8,7 @@ import {
     Button,
     message,
     Row,
-    Col
+    Col,
 } from "antd";
 
 import { useDispatch } from "react-redux";
@@ -19,7 +19,6 @@ import "moment/locale/vi";
 import firebase from "../../Services/firebase";
 
 const Edit = memo((props) => {
-    const db = firebase.firestore();
     const dispatch = useDispatch();
     const { TextArea } = Input;
     const [tagContainer, setTagContainer] = useState([]);
@@ -29,7 +28,7 @@ const Edit = memo((props) => {
         inputFeaturedImage,
         setInputFeaturedImage,
     ] = useState("");
-    const [inputDate, setInputDate] = useState('');
+    const [inputDate, setInputDate] = useState("");
     const [inputContent, setInputContent] = useState("");
     const [inputDescription, setInputDescription] = useState(
         ""
@@ -52,9 +51,9 @@ const Edit = memo((props) => {
     const handleChangeKeywords = (e) => {
         setInputKeywords(e.target.value);
     };
-    const handleChangeDate = e => {
+    const handleChangeDate = (e) => {
         setInputDate(e.target.value);
-    }
+    };
     const handleInputTag = (e) => {
         setInputTag(e.target.value);
     };
@@ -107,9 +106,10 @@ const Edit = memo((props) => {
             return;
         }
         const pid = new Date().valueOf().toString();
-        db.collection("posts")
-            .doc(pid)
-            .set({
+        firebase
+            .database()
+            .ref("posts")
+            .push({
                 pid: pid,
                 featuredImage: inputFeaturedImage,
                 title: inputTitle,
@@ -118,10 +118,6 @@ const Edit = memo((props) => {
                 tags: tagContainer,
                 content: inputContent,
                 keywords: inputKeywords.split(","),
-            })
-            .then(() => {
-                setPids([pid, ...pids]);
-                message.success("Successfully publish!");
             });
         setInputContent("");
         setInputDescription("");
@@ -267,6 +263,7 @@ const Edit = memo((props) => {
                     </Col>
                 </Row>
                 <TextArea
+                    autoSize={{ minRows: 12 }}
                     onChange={handleChangeContent}
                     data={inputContent}
                     id="textarea-content"

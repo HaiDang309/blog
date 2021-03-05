@@ -5,9 +5,6 @@ import "antd/dist/antd.css";
 import "./App.css";
 
 import Home from "./components/Home";
-import Reactjs from "./components/Programming/react";
-import JavaScript from "./components/Programming/javascript";
-import Life from "./components/Life";
 import AboutMe from "./components/About me";
 import Login from "./components/Admin/Login";
 import Edit from "./components/Admin/Edit";
@@ -16,7 +13,6 @@ import Display from "./components/Display";
 import Error from "./components/404";
 import Posts from "./components/Home/Article/Posts";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 
 import { Layout } from "antd";
 
@@ -44,17 +40,6 @@ function App() {
                             path="/"
                             component={Home}
                         />
-                        <Route
-                            exact
-                            path="/programming/react"
-                            component={Reactjs}
-                        />
-                        <Route
-                            exact
-                            path="/programming/javascript"
-                            component={JavaScript}
-                        />
-                        <Route path="/life" component={Life} />
                         <Route
                             path="/about-me"
                             component={AboutMe}

@@ -35,20 +35,22 @@ const Login = memo((props) => {
             return;
         }
         window.location.reload();
-        window.localStorage.setItem('auth', JSON.stringify(true));
+        window.localStorage.setItem(
+            "auth",
+            JSON.stringify(true)
+        );
     };
     return (
         <div
             style={{
+                height: "100vh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
             }}
         >
             <Card title="Administrator">
-                <Form
-                    autoComplete="off"
-                >
+                <Form autoComplete="off">
                     <Form.Item name="name">
                         <Input
                             onChange={handleChangeName}

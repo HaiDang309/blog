@@ -1,13 +1,13 @@
 import React, { memo } from "react";
 
-import { Card, Typography, Space, Image, Tag } from "antd";
+import { Typography, Space, Image, Tag, Card, Row, Col, Button } from "antd";
 import Icon from "@ant-design/icons";
 import { CalendarIcon } from "../../../svg";
 
 const Post = memo((props) => {
-    const { Meta } = Card;
-    const { Text } = Typography;
+    const { Text, Title } = Typography;
     const {
+        pid,
         featuredImage,
         title,
         date,
@@ -17,54 +17,58 @@ const Post = memo((props) => {
         content,
     } = props;
     return (
-        <Card
-            hoverable
-            bordered={false}
-            style={{
-                display: "flex",
-                margin: "8px 0",
-            }}
-            cover={
-                <img
-                    style={{
-                        width: "360px",
-                        minWidth: "128px",
-                    }}
-                    alt=""
-                    src={featuredImage}
-                />
-            }
-        >
-            <Meta
-                title={title}
-                description={
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                        }}
-                    >
-                        <Space>
-                            <Icon component={CalendarIcon} />
-                            <Text disabled>{date}</Text>
-                            {tags.map((item) => (
-                                <Tag
-                                    key={
-                                        Math.random() /
-                                        Math.random()
-                                    }
-                                >
-                                    {item}
-                                </Tag>
-                            ))}
-                        </Space>
-                        <Text type="secondary">
-                            {description}
-                        </Text>
-                    </div>
-                }
+      <Card size="small" bordered={false}>
+        <Row gutter={[16, 16]}>
+          <Col xs={{ span: 0 }} lg={{ span: 12 }}>
+            <img
+              style={{
+                width: "360px",
+                minWidth: "128px",
+              }}
+              alt=""
+              src={featuredImage}
             />
-        </Card>
+          </Col>
+          <Col
+            xs={{ span: 24 }}
+            lg={{ span: 12 }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Title style={{ marginBottom: "-8px", borderBottom: "none" }}>{title}</Title>
+            <Space>
+              <Icon component={CalendarIcon} />
+              <Text disabled>{date}</Text>
+              {tags.map((tag) => (
+                <Tag
+                  color={
+                    tag === "react"
+                      ? "blue"
+                      : tag === "javascript"
+                      ? "gold"
+                      : "cyan"
+                  }
+                  key={Math.random() / Math.random()}
+                >
+                  {tag}
+                </Tag>
+              ))}
+            </Space>
+            <Text type="secondary">{description}</Text>
+            <Space>
+              <Button
+                style={{ color: "white", marginTop: "8px" }}
+                href={`/d/${pid}`}
+                type="primary"
+              >
+                Đọc tiếp ...
+              </Button>
+            </Space>
+          </Col>
+        </Row>
+      </Card>
     );
 });
 
