@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 
 import "antd/dist/antd.css";
 
@@ -14,7 +14,9 @@ import Error from "./components/404";
 import Posts from "./components/Home/Article/Posts";
 import Navbar from "./components/Navbar";
 
-import { Layout } from "antd";
+import { Layout, Button } from "antd";
+import { UpCircleOutlined } from '@ant-design/icons';
+
 
 import {
     BrowserRouter as Router,
@@ -31,48 +33,27 @@ function App() {
     );
     const { Content } = Layout;
     return (
-        <Router>
-            <div className="app">
-                <Layout style={{ height: "100vh" }}>
-                    <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            component={Home}
-                        />
-                        <Route
-                            path="/about-me"
-                            component={AboutMe}
-                        />
-                        <Route
-                            exact
-                            path="/d/:pid"
-                            children={<Display />}
-                        />
+      <Router>
+        <div className="app">
+          
+          <Layout style={{ height: "100vh" }}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/about-me" component={AboutMe} />
+              <Route exact path="/d/:pid" children={<Display />} />
 
-                        <Route
-                            path="/programming/:category"
-                            children={<Posts />}
-                        />
-                        <Route exact path="/admin">
-                            {auth_admin ? <Edit /> : <Login />}
-                        </Route>
-                        <Route exact path="/admin/preview">
-                            {auth_admin ? (
-                                <Preview />
-                            ) : (
-                                <Login />
-                            )}
-                        </Route>
-                        <Route
-                            path="*"
-                            exact
-                            component={Error}
-                        />
-                    </Switch>
-                </Layout>
-            </div>
-        </Router>
+              <Route path="/programming/:category" children={<Posts />} />
+              <Route exact path="/admin">
+                {auth_admin ? <Edit /> : <Login />}
+              </Route>
+              <Route exact path="/admin/preview">
+                {auth_admin ? <Preview /> : <Login />}
+              </Route>
+              <Route path="*" exact component={Error} />
+            </Switch>
+          </Layout>
+        </div>
+      </Router>
     );
 }
 

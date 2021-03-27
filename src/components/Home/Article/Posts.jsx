@@ -87,7 +87,7 @@ const Posts = memo((props) => {
           )}
           <Pagination
             style={{
-              marginBottom: "2em",
+              margin: "1.5em 0",
               textAlign: "right",
             }}
             defaultPageSize={6}

@@ -142,10 +142,10 @@ const Navbar = memo((props) => {
         lg={{ span: 0 }}
         xs={{ span: 24 }}
       >
-          <MenuOutlined
-            onClick={handleOpenMenu}
-            style={{ fontSize: "2em", cursor: "pointer", color: "pink" }}
-          />
+        <MenuOutlined
+          onClick={handleOpenMenu}
+          style={{ fontSize: "2em", cursor: "pointer", color: "pink" }}
+        />
         <Drawer placement="left" onClose={handleCloseMenu} visible={openMenu}>
           <Link
             type="secondary"
@@ -162,24 +162,34 @@ const Navbar = memo((props) => {
           </Link>
           <Menu mode="vertical">
             <Menu.Item icon={<HomeOutlined />} key="1">
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/" style={{ color: "black" }}>
+                Home
+              </NavLink>
             </Menu.Item>
             <SubMenu key="SubMenu" icon={<CodeOutlined />} title="Programming">
               <Menu.Item
                 icon={<Icon component={ReactIcon} />}
                 key="programming:1"
               >
-                <NavLink to="/?q=react">React</NavLink>
+                <NavLink style={{ color: "black" }} to="/?q=react">
+                  React
+                </NavLink>
               </Menu.Item>
               <Menu.Item icon={<Icon component={JsIcon} />} key="programming:2">
-                <NavLink to="/?q=javascript">JavaScript</NavLink>
+                <NavLink style={{ color: "black" }} to="/?q=javascript">
+                  JavaScript
+                </NavLink>
               </Menu.Item>
             </SubMenu>
             <Menu.Item icon={<HeartOutlined />} key="3">
-              <NavLink to="/?q=sidelines">Life</NavLink>
+              <NavLink style={{ color: "black" }} to="/?q=sidelines">
+                Life
+              </NavLink>
             </Menu.Item>
             <Menu.Item icon={<UserOutlined />} key="4">
-              <NavLink to="/about-me">About me</NavLink>
+              <NavLink style={{ color: "black" }} to="/about-me">
+                About me
+              </NavLink>
             </Menu.Item>
             <Search />
           </Menu>

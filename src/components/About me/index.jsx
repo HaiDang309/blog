@@ -27,6 +27,8 @@ const AboutMe = memo((props) => {
                         overflowY: "auto",
                         textAlign: "center",
                         padding: "0 24px",
+                        width: "100vw",
+                        wordBreak: "keep-all",
                     }}
                 >
                     <Title>About me</Title>
@@ -37,7 +39,6 @@ const AboutMe = memo((props) => {
                                 mask:
                                     "Đừng nhấn vào đây, chả có gì đâu!😁",
                             }}
-                            width={512}
                             src={avatar}
                             alt=""
                         />

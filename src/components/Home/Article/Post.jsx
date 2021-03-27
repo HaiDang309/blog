@@ -17,13 +17,12 @@ const Post = memo((props) => {
         content,
     } = props;
     return (
-      <Card size="small" bordered={false}>
-        <Row gutter={[16, 16]}>
+      <Card style={{margin: "16px 0"}} size="small" bordered={false}>
+        <Row>
           <Col xs={{ span: 0 }} lg={{ span: 12 }}>
             <img
               style={{
-                width: "360px",
-                minWidth: "128px",
+                maxWidth: "392px",
               }}
               alt=""
               src={featuredImage}
